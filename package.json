@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "apirestful",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Servidor ApiRestful ECommerce",
   "main": "server.js",
   "scripts": {

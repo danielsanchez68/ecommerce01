@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.31e28136.css",
-    "main.js": "/static/js/main.30a68f9b.js",
+    "main.css": "/static/css/main.6c4898be.css",
+    "main.js": "/static/js/main.af9db592.js",
+    "static/media/logoEC.webp": "/static/media/logoEC.8d1aafe4e0f977414f2e.webp",
+    "static/media/logoCarrito.png": "/static/media/logoCarrito.725ddec0dab8ba8858f1.png",
     "index.html": "/index.html",
-    "main.31e28136.css.map": "/static/css/main.31e28136.css.map",
-    "main.30a68f9b.js.map": "/static/js/main.30a68f9b.js.map"
+    "main.6c4898be.css.map": "/static/css/main.6c4898be.css.map",
+    "main.af9db592.js.map": "/static/js/main.af9db592.js.map"
   },
   "entrypoints": [
-    "static/css/main.31e28136.css",
-    "static/js/main.30a68f9b.js"
+    "static/css/main.6c4898be.css",
+    "static/js/main.af9db592.js"
   ]
 }

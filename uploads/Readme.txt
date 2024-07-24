@@ -1,0 +1,1 @@
+Esta carpeta se utiliza para almacenar las fotos de productos subidos al servidor

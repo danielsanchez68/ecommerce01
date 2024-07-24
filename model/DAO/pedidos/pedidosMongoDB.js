@@ -1,19 +1,20 @@
-import { ObjectId } from "mongodb"
 import CnxMongoDB from "../../DBMongo.js"
+import { PedidoModel } from "../models/pedido.js"
 
 class ModelMongoDB {
 
     obtenerPedidos = async () => {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
-        const pedidos = await CnxMongoDB.db.collection('pedidos').find({}).toArray()
+        const pedidos = await PedidoModel.find({})
         return pedidos
     }
     
     guardarPedido = async pedido => {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
 
-        await CnxMongoDB.db.collection('pedidos').insertOne(pedido)
-        return pedido
+        const pedidoModel = new PedidoModel(pedido)
+        const pedidoGuardado = await pedidoModel.save()
+        return pedidoGuardado
     }
 }
 

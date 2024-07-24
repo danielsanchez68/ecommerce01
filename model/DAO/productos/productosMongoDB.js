@@ -1,34 +1,33 @@
-import { ObjectId } from "mongodb"
 import CnxMongoDB from "../../DBMongo.js"
+import { ProductoModel } from "../models/producto.js"
 
 class ModelMongoDB {
 
     obtenerProductos = async () => {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
-        //throw new Error('Error en Model MongoDB!')
-        const productos = await CnxMongoDB.db.collection('productos').find({}).toArray()
+        const productos = await ProductoModel.find({})
         return productos
     }
     
     obtenerProducto = async id => {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
-        //const producto = await CnxMongoDB.db.collection('productos').findOne({_id: new ObjectId(id)})
-        const producto = await CnxMongoDB.db.collection('productos').findOne({_id: ObjectId.createFromHexString(id)})
+        const producto = await ProductoModel.findOne({_id: id})
         return producto
     }
 
     guardarProducto = async producto => {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
 
-        await CnxMongoDB.db.collection('productos').insertOne(producto)
-        return producto
+        const productoModel = new ProductoModel(producto)
+        const productoGuardado = await productoModel.save()
+        return productoGuardado
     }
 
     actualizarProducto = async (id, producto) => {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
 
-        await CnxMongoDB.db.collection('productos').updateOne(
-            {_id: ObjectId.createFromHexString(id)}, 
+        await ProductoModel.updateOne(
+            {_id: id }, 
             { $set: producto }
         )
         const productoActualizado = await this.obtenerProducto(id)
@@ -39,7 +38,7 @@ class ModelMongoDB {
         if(!CnxMongoDB.connectionOK) throw new Error('[ERROR] DAO sin conexión a MongoDB')
 
         const productoBorrado = await this.obtenerProducto(id)
-        await CnxMongoDB.db.collection('productos').deleteOne({_id: ObjectId.createFromHexString(id)})
+        await ProductoModel.deleteOne({_id: id})
         return productoBorrado
     }
 }

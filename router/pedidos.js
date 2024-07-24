@@ -11,6 +11,7 @@ class Router {
     config() {
         this.router.get('/', this.controlador.obtenerPedidos )
         this.router.post('/', this.controlador.guardarPedido )
+        this.router.post('/mp/create_preference', this.controlador.createPreference )
 
         return this.router
     }
